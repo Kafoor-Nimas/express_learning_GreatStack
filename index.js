@@ -1,14 +1,10 @@
 import express from "express";
-import mongoose from "mongoose";
+import { connectDB } from "./config/db.js";
 
 const app = express();
 const PORT = 3000;
-const MONGODB_URI =
-  "mongodb+srv://Nimas:great123@cluster0.tw9kkxo.mongodb.net/express";
 
-await mongoose.connect(MONGODB_URI).then(() => {
-  console.log("Database Connected");
-});
+await connectDB();
 
 app.get("/", (req, res) => {
   res.send("Hello, express");
