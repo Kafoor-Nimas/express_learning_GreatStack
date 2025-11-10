@@ -4,6 +4,14 @@ const app = express();
 const PORT = 3000;
 app.use(express.json());
 
+process.on("uncaughtException", (err) => {
+  console.log(err);
+  process.exit(1);
+});
+process.on("unhandledRejection", (reason, promise) => {
+  console.log(reason);
+});
+
 app.get("/", (req, res) => {
   res.send("Hello, express");
 });
